@@ -1,0 +1,33 @@
+JointPosGroup:
+    type: "poseff_controllers/JointGroupPosEffController"
+    joints:
+      - joint_x
+      - joint_y
+joints:
+  - joint_x
+  - joint_y
+motors:
+ - motor1
+ - motor2
+motor_params:
+ motor1:
+     id: 1
+     gains:
+      position_kp: 500
+      position_ki: 5
+      position_kd: 0
+     operating_mode: 4 #multi-turn mode
+ motor2:
+     id: 2
+     gains:
+      position_kp: 800
+      position_ki: 5
+      position_kd: 0
+     operating_mode: 4 #multi-turn mode
+port: "/dev/ttyUSB0"
+baudrate: 1000000
+protocol_version: 2.0
+
+dynamixelJointState:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50

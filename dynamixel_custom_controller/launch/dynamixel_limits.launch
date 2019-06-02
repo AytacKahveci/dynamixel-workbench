@@ -1,0 +1,12 @@
+<launch>
+		<!-- load the controllers  -->
+	  	<node name="controller_spawner" pkg="controller_manager" type="spawner" ns="/dynamixel" respawn="false"
+	    output="screen" args="dynamixelJointState JointPosGroup --shutdown-timeout 0.1"/>
+
+	 	<node pkg="dynamixel_custom_controller" type="dynamixel_limits_controller" ns="/dynamixel" name="dynamixel_limits_controller" output="screen" >
+	 	</node>
+
+		<!-- Load joint controller configurations from YAML file to parameter server -->
+		<rosparam file="$(find dynamixel_custom_controller)/config/commonController.yaml" ns="/dynamixel" command="load"/>
+
+</launch>
